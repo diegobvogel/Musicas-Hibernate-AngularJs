@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html ng-app="musicas">
+<head>
+	<meta charset="UTF-8">
+	<title>Músicas</title>
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="./css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap-datepicker.standalone.min.css"/>
+	
+	<script type="text/javascript" src="./js/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.mask.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/angularjs.1.5.7.js"></script>
+	<script src="./controllers/module.js"></script>
+	<script src="./controllers/musicaController.js"></script>
+	
+</head>
+<body ng-controller="musicasController" ng-init="listarMusicas();">
+	<form class="form-horizontal">
+		
+		<nav class="navbar navbar-inverse navbar-static-top">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="#">
+		      	<font style="color: #FFFFFF">Cadastro de músicas</font>
+		      </a>
+		    </div>
+		  </div>
+		</nav>
+		
+    	<div class="panel panel-default">
+    		<div class="panel-heading">
+    			<div class="clearfix">
+		  			<h1 class="panel-title aw-titulo-panel">{{acaoPagina}}</h1>
+	  			</div>
+    		</div>
+    		
+    		<div class="panel-body">
+    			<input type="hidden"/>
+				<div class="form-group">
+					<label for="nome" class="col-sm-2 control-label">Nome</label>
+					<div class="col-sm-4"> 
+						<input type="text" class="form-control" id="nome" name="nome" maxlength="100" ng-model="musica.nome"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="banda" class="col-sm-2 control-label">Banda</label>
+					<div class="col-sm-2">  
+						<input type="text" class="form-control"	id="banda" name="banda" maxlength="100" ng-model="musica.banda"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="duracao" class="col-sm-2 control-label">Duração</label>
+					<div class="col-sm-2">   
+						<input type="text" class="form-control" id="duracao" name="duracao" ng-model="musica.duracao"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary" ng-click="salvar();">Salvar</button>
+					</div>
+				</div>
+			</div>
+    	</div>
+    </form>
+    
+    
+    
+    <div class="panel-body">
+
+		<table class="table table-bordered table-striped">
+   			<thead>
+   				<tr>
+   					<th class="text-left col-md-5">Nome</th>
+   					<th class="text-center col-md-4">Banda</th>
+   					<th class="text-right col-md-2">Duracao</th>
+   					<th class="col-md-1"></th>
+   				</tr>
+   			</thead>
+   			<tbody>
+   				<tr	ng-repeat="musica in musicas">
+   					<td class="text-left">{{musica.nome}}</td>
+   					<td class="text-center">{{musica.banda}}</td>
+   					<td class="text-right">{{musica.duracao}}</td>
+   					<td class="text-center">
+   						<a class="btn btn-link btn-xs" title="Editar" rel="tooltip" data-placement="top" ng-click="buscarMusica(musica.codigo);">
+   							<span class="glyphicon glyphicon-pencil"></span>
+   						</a>
+   						<a class="btn btn-link btn-xs" title="Excluir" rel="tooltip" data-placement="top" ng-click="deletar(musica.codigo);">
+   							<span class="glyphicon glyphicon-remove"></span>
+   						</a>
+   					</td>
+   				</tr>
+   			</tbody>
+   		</table>
+	</div>
+</body>
+</html>
