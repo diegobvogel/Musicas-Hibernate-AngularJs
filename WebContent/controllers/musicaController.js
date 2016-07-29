@@ -37,15 +37,10 @@ angular.module('musicas').controller('musicasController', function ($scope, $roo
 	$scope.salvar = function () {
 		$scope.formulario.$setDirty();
 		if ($scope.formulario.$invalid) {
-//			alert('Necessário preencher todos os campos');
 			return;
 		}
 		
 		var url = "";
-//		if (!isFormularioValido($scope.musica)) {
-//			alert('Necessário preencher todos os campos');
-//			return;
-//		}
 		if($scope.isEdicao){
 			url = 'ws/musicas/editar';
 		}else{
