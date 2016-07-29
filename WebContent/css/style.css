@@ -21,3 +21,15 @@
 	float: left;
 	padding-top: 2px;
 }
+
+input.ng-touched.ng-invalid, textarea.ng-touched.ng-invalid {
+	border-color: #F99
+}
+
+.alert {
+	margin-left: 0px;
+	margin-right: 0px;
+	padding: 2px;
+	font-weight: bold;
+	font-size: small;
+}

@@ -29,12 +29,23 @@ angular.module('musicas').controller('musicasController', function ($scope, $roo
 		    });
 	}
 	
+	$scope.resetForm = function () {
+		$scope.formulario.$setPristine();
+		$scope.formulario.$setUntouched();
+	};
+	
 	$scope.salvar = function () {
-		var url = "";
-		if (!isFormularioValido($scope.musica)) {
-			alert('Necessário preencher todos os campos');
+		$scope.formulario.$setDirty();
+		if ($scope.formulario.$invalid) {
+//			alert('Necessário preencher todos os campos');
 			return;
 		}
+		
+		var url = "";
+//		if (!isFormularioValido($scope.musica)) {
+//			alert('Necessário preencher todos os campos');
+//			return;
+//		}
 		if($scope.isEdicao){
 			url = 'ws/musicas/editar';
 		}else{
@@ -80,13 +91,6 @@ angular.module('musicas').controller('musicasController', function ($scope, $roo
         .error(function (data, status, header, config) {
         	alert('Não foi possível realizar a operação.');
         });
-	}
-	
-	function isFormularioValido(obj){
-		if (obj.nome == '' || obj.banda == '' || obj.duracao == '') {
-			return false;
-		}
-		return true;
 	}
 	
 });

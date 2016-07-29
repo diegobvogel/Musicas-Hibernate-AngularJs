@@ -16,7 +16,7 @@
 	
 </head>
 <body ng-controller="musicasController" ng-init="listarMusicas();">
-	<form class="form-horizontal">
+	<form name="formulario" class="form-horizontal" novalidate>
 		
 		<nav class="navbar navbar-inverse navbar-static-top">
 		  <div class="container-fluid">
@@ -40,24 +40,34 @@
 				<div class="form-group">
 					<label for="nome" class="col-sm-2 control-label">Nome</label>
 					<div class="col-sm-4"> 
-						<input type="text" class="form-control" id="nome" name="nome" maxlength="100" ng-model="musica.nome"/>
+						<input type="text" class="form-control" id="nome" name="nome" maxlength="100" ng-model="musica.nome" required/>
+						<div class="alert alert-danger" role="alert" ng-if="(formulario.nome.$touched || formulario.$submitted) && formulario.nome.$invalid">
+							<span ng-if="formulario.nome.$error.required">Este campo é obrigatório</span>
+						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="banda" class="col-sm-2 control-label">Banda</label>
 					<div class="col-sm-2">  
-						<input type="text" class="form-control"	id="banda" name="banda" maxlength="100" ng-model="musica.banda"/>
+						<input type="text" class="form-control"	id="banda" name="banda" maxlength="100" ng-model="musica.banda" required/>
+						<div class="alert alert-danger" role="alert" ng-if="(formulario.banda.$touched || formulario.$submitted) && formulario.banda.$invalid">
+							<span ng-if="formulario.banda.$error.required">Este campo é obrigatório</span>
+						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="duracao" class="col-sm-2 control-label">Duração</label>
 					<div class="col-sm-2">   
-						<input type="text" class="form-control" id="duracao" name="duracao" ng-model="musica.duracao"/>
+						<input type="text" class="form-control" id="duracao" name="duracao" ng-model="musica.duracao" required/>
+						<div class="alert alert-danger" role="alert" ng-if="(formulario.duracao.$touched || formulario.$submitted) && formulario.duracao.$invalid">
+							<span ng-if="formulario.duracao.$error.required">Este campo é obrigatório</span>
+						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-primary" ng-click="salvar();">Salvar</button>
+						<button type="reset" ng-click="resetForm();">Limpar</button>
 					</div>
 				</div>
 			</div>
